@@ -10,7 +10,9 @@ MOCK_DEVICES = {
         "has_valid_expiry":True,
         "imei": "356938035643809",
         "ip": "192.168.1.1",
-        "port":"5023"
+        "port":"5023",
+        "serial_number_webOnelap":"SN123456789",
+        "serial_number_ecom":"SN123456789"
     },
     "device002": {
         "battery_charged": False,
@@ -20,7 +22,9 @@ MOCK_DEVICES = {
         "has_valid_expiry": False,
         "imei": "356938035643810",
         "ip": "192.168.1.1",
-        "port":"5023"
+        "port":"5023",
+        "serial_number_webOnelap":"SN123456789",
+        "serial_number_ecom":"SN123456789"
     },
     "device003": {
         "battery_charged": True,
@@ -30,7 +34,9 @@ MOCK_DEVICES = {
         "has_valid_expiry": True,
         "imei": "356938035643811",
         "ip": "192.168.1.1",
-        "port":"5023"
+        "port":"5023",
+        "serial_number_webOnelap":"SN123456789",
+        "serial_number_ecom":"SN123456789"
     }
 }
 
@@ -104,4 +110,21 @@ def close_ticket(device_id: str):
     return {
         "device_id": device_id,
         "status": "Ticket closed successfully"
+    }
+
+
+@app.get("/device/{device_id}/serial-number-exists")
+def serialNumberExists_webonelap(device_id: str):
+    device = get_device(device_id)
+    return {
+        "device_id": device_id,
+        "serial_number_exists_webonelap": True if "serial_number_webOnelap" in device else False
+    }
+
+@app.get("/device/{device_id}/serial-number-ecom-exists")
+def serial_number_exists_ecom(device_id: str):
+    device = get_device(device_id)
+    return {
+        "device_id": device_id,
+        "serial_number_exists_ecom": True if "serial_number_ecom" in device else False
     }
