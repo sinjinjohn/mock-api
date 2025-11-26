@@ -7,21 +7,30 @@ MOCK_DEVICES = {
         "sim_type": "one-lap",
         "sim_active": True,
         "has_sent_location_ever": True,
-        "has_valid_expiry":True
+        "has_valid_expiry":True,
+        "imei": "356938035643809",
+        "ip": "192.168.1.1",
+        "port":"5023"
     },
     "device002": {
         "battery_charged": False,
         "sim_type": "personal",
         "sim_active": False,
         "has_sent_location_ever": False,
-        "has_valid_expiry": False
+        "has_valid_expiry": False,
+        "imei": "356938035643810",
+        "ip": "192.168.1.1",
+        "port":"5023"
     },
     "device003": {
         "battery_charged": True,
         "sim_type": "personal",
         "sim_active": True,
         "has_sent_location_ever": False,
-        "has_valid_expiry": True
+        "has_valid_expiry": True,
+        "imei": "356938035643811",
+        "ip": "192.168.1.1",
+        "port":"5023"
     }
 }
 
@@ -75,4 +84,24 @@ def location_status(device_id: str):
     return {
         "device_id": device_id,
         "has_valid_expiry": device["has_valid_expiry"]
+    }
+
+
+@app.get("/device/{device_id}/server-parameters")
+def get_server_parameters(device_id: str):
+    device = get_device(device_id)
+    return {
+        "device_id": device_id,
+        "imei": device["imei"],
+        "ip": device["ip"],
+        "port": device["port"]
+    }
+
+
+@app.get("/device/{device_id}/close-ticket")
+def close_ticket(device_id: str):
+    device = get_device(device_id)
+    return {
+        "device_id": device_id,
+        "status": "Ticket closed successfully"
     }
