@@ -104,7 +104,7 @@ def get_server_parameters(device_id: str):
     }
 
 
-@app.get("/device/{device_id}/close-ticket")
+@app.post("/device/{device_id}/close-ticket")
 def close_ticket(device_id: str):
     device = get_device(device_id)
     return {
