@@ -154,7 +154,7 @@ def serial_number_exists_ecom(device_id: str):
 
 # post request for all above endpoints
 
-@app.patch("/device/{device_id}/update-data")
+@app.post("/device/{device_id}/update-data")
 def update_device(device_id: str, payload: DeviceUpdate):
     get_device(device_id)
 
