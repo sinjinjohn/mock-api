@@ -173,3 +173,25 @@ def update_device(device_id: str, payload: DeviceUpdate):
 
 
 
+#Api to send new vodafone sim
+@app.post("/device/{device_id}/send-vodafone-sim")
+def send_vodafone_sim(device_id: str):
+    return {
+        "device_id": device_id,
+        "status": "Vodafone SIM sent successfully"
+    }
+
+#Api to send new aitel sim
+@app.post("/device/{device_id}/send-airtel-sim")
+def send_airtel_sim(device_id: str):
+    return {
+        "device_id": device_id,
+        "status": "Airtel SIM sent successfully"
+    }
+#Api to update apn with respect to the new sim
+@app.post("/device/{device_id}/update-apn")
+def update_apn(device_id: str):
+    return {
+        "device_id": device_id,
+        "status": "APN updated successfully"
+    }
